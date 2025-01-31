@@ -32,11 +32,7 @@ export default function RootLayout({ children,session }) {
   return (
     <html lang="en">
       <body
-        className={`${playfair} ${geistSans.variable} ${geistMono.variable} ${dmSans.variable} antialiased [&::-webkit-scrollbar]:w-2
-  [&::-webkit-scrollbar-track]:bg-gray-100
-  [&::-webkit-scrollbar-thumb]:bg-gray-300
-  dark:[&::-webkit-scrollbar-track]:bg-neutral-700
-  dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500`}
+        className={`${playfair} ${geistSans.variable} ${geistMono.variable} ${dmSans.variable} antialiased [&::-webkit-scrollbar]:hidden`}
       >
         <Sessionwrap>
         {children}

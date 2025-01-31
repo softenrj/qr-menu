@@ -7,14 +7,15 @@ import { GitHub, Google, LinkedIn } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
 
 const Page = () => {
+
     const { data: session } = useSession();
     const router = useRouter();
 
     useEffect(() => {
         if (session) {
-            router.push("/"); // Redirect to the homepage if the user is already logged in
+            router.push("/");
         }
-    }, [session, router]);
+    }, [session,router]);
 
     if (!session) {
         return (
@@ -24,7 +25,7 @@ const Page = () => {
                     <div className="bg-white shadow-2xl rounded-2xl p-14 w-full max-w-lg text-center mt-20 mb-60">
                         <div className="h-40 w-40 mx-auto rounded-full overflow-hidden bg-gray-300 flex items-center justify-center">
                             <img
-                                src="/😎.jpg"
+                                src="profile.jpg"
                                 alt="Profile"
                                 className="h-full w-full object-cover"
                             />

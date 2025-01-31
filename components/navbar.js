@@ -1,26 +1,28 @@
 import React from "react";
-import Link from "next/link";
+import HomeNavButton from "./homeNavButton";
+import AccountDropdown from "./AccountDropdown";
 
 function Navbar() {
     return (
-        <div className="bg-[#f4f5f7] h-24 flex items-center justify-between px-8 shadow-md">
-            {/* Logo Section */}
+        <div className="bg-[#ffffff] h-20 pt-2 pb-2
+        flex items-center justify-between px-10 shadow-md">
+
             <div className="flex items-center">
                 <img src="/shared/Softcore.png" alt="Logo" className="h-16 w-auto" />
             </div>
 
-            {/* Navigation Section */}
-            <div className="flex gap-6 text-gray-800">
-                <Link href="/home" className="
-                      hover:bg-gray-500 hover:text-white p-1 rounded-[8px]
-                       font-dmSans text-xl">Home</Link>
-                <Link href="/about" className="
-                      hover:bg-gray-500 hover:text-white p-1 rounded-[8px]
-                       font-dmSans text-xl">About</Link>
-                <Link href="/contact" className="
-                      hover:bg-gray-500 hover:text-white p-1 rounded-[8px]
-                       font-dmSans text-xl">Contact</Link>
+
+            <div className="flex items-center gap-6 text-gray-800 ">
+
+                <HomeNavButton link="/" content="Home" />
+                <HomeNavButton link="/About" content="About" />
+                <HomeNavButton link="/Contact" content="Contact" />
+
+                <div className="account-tab flex items-center">
+                    <AccountDropdown />
+                </div>
             </div>
+
         </div>
     );
 }
