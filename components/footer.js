@@ -24,13 +24,14 @@ function Footer() {
               { href: "#", icon: <Instagram fontSize="small" />, color: "text-pink-400" },
               { href: "https://github.com/softenrj", icon: <GitHub fontSize="small" />, color: "text-black" },
             ].map((item, index) => (
-              <Link
+              <a
+                target="_blank"
                 key={index}
                 href={item.href}
                 className={`bg-white shadow-lg h-8 w-8 flex items-center justify-center rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-xl ${item.color}`}
               >
                 {item.icon}
-              </Link>
+              </a>
             ))}
           </div>
         </div>

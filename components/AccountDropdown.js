@@ -1,6 +1,6 @@
 import React from 'react';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import Signout from "@/components/signOut"
+import Signout from "@/components/Signout"
 
 const AccountDropdown = () => {
     return (
@@ -14,10 +14,10 @@ const AccountDropdown = () => {
                 <div>
                     <MenuItem>
                         <a
-                            href="#"
+                            href="/services"
                             className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
                         >
-                            DashBoard
+                            Services
                         </a>
                     </MenuItem>
 

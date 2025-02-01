@@ -8,7 +8,12 @@ function Navbar() {
         flex items-center justify-between px-10 shadow-md">
 
             <div className="flex items-center">
-                <img src="/shared/Softcore.png" alt="Logo" className="h-16 w-auto" />
+                <video src="/shared/logo.mp4"
+                loop
+                autoPlay
+                muted
+                disablePictureInPicture
+                 className="h-20"></video>
             </div>
 
 
