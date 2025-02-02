@@ -9,18 +9,19 @@ import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import ServiceCard from '@/components/ServiceCard';
 import TypeWriter from '@/components/TypeWriter';
 
-export default function DashBoard() {
+export default function Service() {
     return (
         <div>
             <Navbar />
-            <main className="min-h-screen flex flex-col items-center px-4 md:px-12">
+            <main className="flex flex-col items-center px-4 md:px-12">
+
                 <div className="content mt-24 md:mt-36 w-full max-w-6xl md:flex">
                     <div className="w-full md:w-[40%] flex">
                         <Poster />
                     </div>
                     <div className="md:w-[60%] flex flex-col items-center">
                         <h1 className="text-5xl font-bold text-center mt-8 w-full">
-                            Elevating Your Experience with
+                            Elevating Your Experience with <br />
                             <span className="text-blue-600 transition duration-700 hover:drop-shadow-[0_0_10px_rgba(59,130,246,0.8)]">
                                 <TypeWriter content={[
                                     " Outstanding Services",
@@ -38,7 +39,7 @@ export default function DashBoard() {
                                     " Remarkable Services",
                                     " Unparalleled Services",
                                     " Unbeatable Services"
-                                ]}/>
+                                ]} />
                             </span>
 
 
@@ -59,12 +60,12 @@ export default function DashBoard() {
                     </div>
                 </div>
 
-                <div className='mt-36 flex flex-col items-center'>
-                    <div className="heading">
-                        <span className='text-4xl font-bold text-blue-600 relative
-                        before:absolute before:bg-red-400 before:right-full before:top-1/2 before:h-1 before:w-[7em] before:rounded-full
-                        after:absolute after:bg-red-400 after:left-full after:top-1/2 after:w-[7em] after:h-1
-                        '>Avalable Services</span>
+                <div className='mt-28 flex flex-col items-center'>
+                    <div className="relative inline-block">
+                        <span className="text-4xl md:text-3xl font-bold">
+                            Available Service 
+                        </span>
+                        <span className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-red-500 via-orange-400 to-yellow-600 rounded-full"></span>
                     </div>
                     <div>
                         <ServiceCard />
