@@ -2,11 +2,11 @@
 import { Typewriter } from 'react-simple-typewriter'
 import React from 'react';
 
-const TypeWriter = ({content}) => {
+const TypeWriter = ({lp,content}) => {
     return (
         <Typewriter 
             words={content}
-            loop={Infinity}
+            loop= {lp ? 1:Infinity}
             cursor
             cursorStyle='_'
             typeSpeed={70}
