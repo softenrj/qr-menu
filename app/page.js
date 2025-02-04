@@ -5,7 +5,7 @@ import Link from "next/link";
 
 function Home() {
   return (
-    <div className="flex flex-col  bg-[url('/homepage/bg.png')] bg-cover bg-center bg-no-repeat">
+    <div className="flex flex-col  bg-[url('/homepage/bg.png')] bg-cover bg-center bg-no-repeat h-screen">
       <Navbar />
       <main className="flex flex-col items-center justify-center  flex-grow-1 min-h-full text-center">
         <div className="font-playfair text-black text-center lg:text-[80px] text-[40px] leading-[5rem]">
