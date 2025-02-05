@@ -15,8 +15,12 @@
     "@headlessui/react": "^2.2.0",
     "@mui/icons-material": "^6.4.1",
     "@mui/material": "^6.4.1",
+    "express": "^4.21.2",
+    "fs": "^0.0.1-security",
+    "multer": "^1.4.5-lts.1",
     "next": "15.1.6",
     "next-auth": "^4.24.11",
+    "path": "^0.12.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-simple-typewriter": "^5.0.1"

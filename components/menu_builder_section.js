@@ -2,19 +2,20 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import MenuItemCard from "./menu_ItemCard";
+import MenuItemCard_default from "./menu_ItemCard_default";
 import EditIcon from '@mui/icons-material/Edit';
 import DoneIcon from '@mui/icons-material/Done';
 import AddBoxIcon from '@mui/icons-material/AddBox';
+import MenuItemCard from "./menuCard";
 
 const Tabs = () => {
   const [activeTabIndex, setActiveTabIndex] = useState(1);
   const [numberOfItem, addItem] = useState([
     {
-      id:1,
+      id: 1,
       items: [
         {
-          img: "/",
+          img: "/qrbuilder/download.jpeg",
           title: "abc",
           price: 34,
           originalPrice: 39
@@ -22,7 +23,7 @@ const Tabs = () => {
       ]
     }
   ]);
-  
+
   const [isEditing, setIsEditing] = useState(false);
   const [isAddingSection, setIsAddingSection] = useState(false);
   const [newSectionName, setNewSectionName] = useState("");
@@ -44,7 +45,7 @@ const Tabs = () => {
     if (e.key === "Enter" && newSectionName.trim() !== "") {
       setMenuSections((prev) => [
         ...prev,
-        { id: prev.length + 1, label: newSectionName,notification: numberOfItem.find((item) => item.id === activeTabIndex)?.items.length || 0 }
+        { id: prev.length + 1, label: newSectionName, notification: numberOfItem.find((item) => item.id === activeTabIndex)?.items.length || 0 }
       ]);
 
       if (newSectionName.toLowerCase() === "china") {
@@ -70,25 +71,21 @@ const Tabs = () => {
   };
 
 
-  //problem look ok.........
+  //not using {} in arrow fuction direcly return without use of return 😁
 
-  const addNewItem = (e) => {
-    addItem((prev)=>{
-     const updatedTab = [...prev];
-     updatedTab[activeTabIndex] = {
-      ...updatedTab[activeTabIndex],
-      items: [
-        ...updatedTab[0].items,
-        {
-          img: e.image,
-          title: e.title,
-          price: e.price,
-          originalPrice: e.originalPrice
-        }
-      ]
-     }
-     return updatedTab;
-    })
+  const addNewItem = (data) => {
+    addItem((prev) => 
+      prev.map((group) => 
+        group.id === activeTabIndex
+        ?{
+          ...group,
+          items: [
+            ...group.items,
+            data
+          ]
+        }:group
+      )
+    )
     console.log(numberOfItem);
   }
 
@@ -162,7 +159,7 @@ const Tabs = () => {
           ) : (
             <EditIcon
               onClick={() => {
-                setNewSectionName(menuSections[activeTabIndex-1].label)
+                setNewSectionName(menuSections[activeTabIndex - 1].label)
                 setIsEditing(true)
               }}
               fontSize="small"
@@ -175,11 +172,13 @@ const Tabs = () => {
       </div>
 
       <div className="min-w-[75%] border-2 md:min-w-[65%] rounded-2xl max-h-[770px] md:max-h-[910px] overflow-auto [&::-webkit-scrollbar]:hidden flex justify-center md:justify-normal flex-wrap">
-        <MenuItemCard onDone={addNewItem} />
-        
-        
+        {numberOfItem.find((group) => group.id === activeTabIndex)?.items.map((item, index) => (
+          <MenuItemCard key={index} image={item.image} title={item.title} price={item.price} originalPrice={item.originalPrice} />
+        ))}
+        <MenuItemCard_default onDone={addNewItem} />
+
+
       </div>
-      <AddBoxIcon fontSize="large" onClick={addNewItem}/>
     </div>
   );
 };

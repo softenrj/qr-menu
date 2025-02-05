@@ -16,7 +16,7 @@ export default function Service() {
             <Navbar />
             <main className="flex flex-col items-center px-4 md:px-12">
 
-                <div className="content mt-16 md:mt-36 w-full max-w-6xl md:flex">
+                <div className="content mt-16 md:mt-20 w-full max-w-6xl md:flex">
                     <div className="w-full md:w-[40%] flex">
                         <Poster />
                     </div>
