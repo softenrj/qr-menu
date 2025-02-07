@@ -1,28 +1,30 @@
 "use client"
 import React, { useState } from 'react';
 
-const MenuItemCard = ({image,title,price,originalPrice}) => {
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+
+const MenuItemCard = ({deleteCard,image,title,price,originalPrice}) => {
     console.log(image);
 
     return (
         <div  className="relative m-5 flex w-56 md:w-72 flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
             <div className="relative mx-3 mt-3 flex h-40 md:h-64 overflow-hidden rounded-xl">
-                <input type="file" accept="image/*" className="absolute z-10 opacity-0 w-full h-full cursor-pointer" />
                 <img src={image} alt="Uploaded preview" className='object-cover rounded-2xl' />
                 <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-xs font-medium text-white">39% OFF</span>
+                <DeleteForeverIcon className='absolute top-0 right-0 m-2 text-blue-300 cursor-pointer' onClick = {deleteCard} />
             </div>
             <div className="mt-3 px-4 pb-4">
                 
-                    <h5 className="text-lg tracking-tight text-slate-900 cursor-pointer" >{title}</h5>
+                    <h5 className="text-lg tracking-tight text-slate-900 " >{title}</h5>
                 
                 
                 <div className="mt-2 mb-3 flex items-center justify-between">
                     <p>
                        
-                            <span className="text-xl font-bold text-slate-900 cursor-pointer" >{price}</span>
+                            <span className="text-xl font-bold text-slate-900" >{price}</span>
                         
                         
-                            <span className="text-xs text-slate-900 line-through ml-2 cursor-pointer" >{originalPrice}</span>
+                            <span className="text-xs text-slate-900 line-through ml-2" >{originalPrice}</span>
                         
                     </p>
                 </div>
