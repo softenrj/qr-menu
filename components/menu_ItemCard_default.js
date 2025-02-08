@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 const MenuItemCard = ({onDone}) => {
     const [image, setImage] = useState("/qrbuilder/default-img.png");
-    const [title, setTitle] = useState("Nike Air MX Super 2500 - Red");
+    const [title, setTitle] = useState("Name of your Food");
     const [price, setPrice] = useState("$449");
     const [originalPrice, setOriginalPrice] = useState("$699");
     const [isEditing, setIsEditing] = useState({ title: false, price: false, originalPrice: false });
@@ -80,7 +80,9 @@ const MenuItemCard = ({onDone}) => {
                         price,
                         originalPrice
                     })
-                }} className="flex items-center justify-center rounded-md bg-slate-900 px-4 py-2 text-xs font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                    setImage("/qrbuilder/default-img.png")
+                    setTitle("Name of your Food")
+                }} className=" flex items-center justify-center rounded-md bg-slate-900 px-4 py-2 text-xs font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-300">
                     <svg xmlns="http://www.w3.org/2000/svg" className="mr-1 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>

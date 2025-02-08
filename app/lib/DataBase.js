@@ -1,15 +1,15 @@
 import mongoose from "mongoose";
 
-const MONGODB = process.env.MONGO_ID;
+const MONGODB = process.env.MONGODB_URL;
 
-if (!MONGODB_URI) {
+if (!MONGODB) {
     throw new Error("Please define the MONGODB_URI environment variable in .env.local");
 }
 
-let cached = global.mongoose;
+let cached = globalThis.mongoose;
 
 if (!cached) {
-    cached = global.mongoose({ conn: null, promise: null })
+    cached = globalThis.mongoose={ conn: null, promise: null }
 }
 
 export async function connectToDB() {
@@ -17,9 +17,7 @@ export async function connectToDB() {
         return cached.conn;
     }
     if (!cached.promise) {
-        cached.promise = mongoose.connect(MONGODB_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
+        cached.promise = mongoose.connect(MONGODB, {
         }).then((mongoose) => mongoose);
     }
     cached.conn = await cached.promise;

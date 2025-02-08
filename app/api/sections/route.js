@@ -1,14 +1,14 @@
 import Section from "@/app/lib/model/SectionDB";
-import { connectToDB } from "@/app/lib/mongodb";
+import { connectToDB } from "@/app/lib/DataBase";
 import { NextResponse } from "next/server";
 
 // CREATE a new section
 export async function POST(req) {
   try {
-    const { name } = await req.json();
+    const { label } = await req.json();
     await connectToDB();
     
-    const newSection = new Section({ name });
+    const newSection = new Section({ label });
     await newSection.save();
 
     return NextResponse.json({ message: "Section saved", section: newSection }, { status: 201 });
@@ -28,13 +28,43 @@ export async function GET() {
   }
 }
 
+// UPDATE a section
+export async function PUT(req) {
+  try {
+    const { oldLabel, newLabel } = await req.json();
+    await connectToDB();
+
+    const updatedSection = await Section.findOneAndUpdate(
+      { label: oldLabel },  // Find section by old label
+      { label: newLabel },  // Update with new label
+      { new: true }         // Return updated document
+    );
+
+    if (!updatedSection) {
+      return NextResponse.json({ error: "Section not found" }, { status: 404 });
+    }
+
+    return NextResponse.json({ message: "Section updated", section: updatedSection }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ error: "Failed to update section", details: error.message }, { status: 500 });
+  }
+}
+
+
 // DELETE a section
 export async function DELETE(req) {
   try {
-    const { id } = await req.json();
     await connectToDB();
-    
-    const deletedSection = await Section.findByIdAndDelete(id);
+    // Extract label from query parameters
+    const { searchParams } = new URL(req.url);
+    const label = searchParams.get("label");
+
+    if (!label) {
+      return NextResponse.json({ error: "Label is required" }, { status: 400 });
+    }
+
+    const deletedSection = await Section.findOneAndDelete({ label });
+
     if (!deletedSection) {
       return NextResponse.json({ error: "Section not found" }, { status: 404 });
     }

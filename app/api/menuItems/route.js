@@ -1,36 +1,73 @@
-// pages/api/menuItems/route.js
-import connectDb from "../../lib/mongodb";
-import MenuItem from "../../models/MenuItem";
+import { connectToDB } from "@/app/lib/DataBase";
+import Menu from "@/app/lib/model/Menu";
+import { NextResponse } from "next/server";
 
-export async function handler(req, res) {
-  await connectDb();
+export async function POST(req) {
+  await connectToDB();
 
-  if (req.method === "POST") {
-    try {
-      const { img, title, price, originalPrice } = req.body;
+  try {
+    const { id,section,image,originalPrice,price,title } = await req.json();
 
-      const newItem = new MenuItem({
-        img,
-        title,
-        price,
-        originalPrice,
-      });
+    const newItem = new Menu({
+      id,
+      section,
+      image,
+      originalPrice,
+      price,
+      title,
+    });
 
-      await newItem.save();
-      res.status(201).json(newItem);
-    } catch (error) {
-      res.status(500).json({ message: "Error adding menu item" });
-    }
-  }
-
-  if (req.method === "GET") {
-    try {
-      const items = await MenuItem.find();
-      res.status(200).json(items);
-    } catch (error) {
-      res.status(500).json({ message: "Error fetching menu items" });
-    }
+    await newItem.save();
+    return NextResponse.json(newItem, { status: 201 });
+  } catch (error) {
+    return NextResponse.json({ message: "Error adding menu item" }, { status: 500 });
   }
 }
 
-export default handler;
+export async function GET() {
+  await connectToDB();
+
+  try {
+    const items = await Menu.find();
+    return NextResponse.json(items, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ message: "Error fetching menu items" }, { status: 500 });
+  }
+}
+
+
+export async function DELETE(req) {
+  try {
+    await connectToDB(); // ✅ Corrected to use await
+
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get("id");
+    const label = searchParams.get("label");
+
+    if (id) {
+      // ✅ Fix: Use _id for MongoDB documents
+      const deleteCard = await Menu.findOneAndDelete({id});
+
+      if (!deleteCard) {
+        return NextResponse.json({ error: "Item not found" }, { status: 404 });
+      }
+      return NextResponse.json({ message: "Item deleted successfully" }, { status: 200 });
+    }
+
+    if (label) {
+      // ✅ Fix: Correct way to delete all items under a section
+      const deleteAll = await Menu.deleteMany({ section: label });
+
+      if (deleteAll.deletedCount === 0) {
+        return NextResponse.json({ error: "No items found under this section" }, { status: 404 });
+      }
+
+      return NextResponse.json({ message: "Section and all related items deleted" }, { status: 200 });
+    }
+
+    return NextResponse.json({ error: "Invalid request: Provide either 'id' or 'label'" }, { status: 400 });
+
+  } catch (error) {
+    return NextResponse.json({ error: "Failed to delete Card", details: error.message }, { status: 500 });
+  }
+}

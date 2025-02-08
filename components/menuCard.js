@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 const MenuItemCard = ({deleteCard,image,title,price,originalPrice}) => {
-    console.log(image);
+
 
     return (
         <div  className="relative m-5 flex w-56 md:w-72 flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">

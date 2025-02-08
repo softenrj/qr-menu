@@ -24,7 +24,7 @@ const Tabs = () => {
     const fetchData = async () => {
       try {
         const sectionsRes = await axios.get("/api/sections");
-        const itemsRes = await axios.get("/api/items");
+        const itemsRes = await axios.get("/api/menuItems");
         setMenuSections(sectionsRes.data);
         setMenuItems(itemsRes.data);
         if (sectionsRes.data.length > 0) {
@@ -38,13 +38,13 @@ const Tabs = () => {
   }, []);
 
   // Add new section
-  const addSection = () => setIsAddingSection(true);
+  const addSection = () => setIsAddingSection(!isAddingSection);
 
   const handleInput = async (e) => {
     if (e.key === "Enter" && newSectionName.trim() !== "") {
       try {
         const res = await axios.post("/api/sections", { label: newSectionName });
-        setMenuSections((prev) => [...prev, res.data]);
+        setMenuSections((prev) => [...prev, res.data.section]);
         setNewSectionName("");
         setIsAddingSection(false);
       } catch (error) {
@@ -75,10 +75,12 @@ const Tabs = () => {
   // Delete section
   const sectionDelete = async () => {
     try {
-      await axios.delete("/api/sections", { data: { label: activeTab } });
+      await axios.delete(`/api/sections?label=${activeTab}`);
+      await axios.delete(`/api/menuItems?label=${activeTab}`)
       setMenuSections((prev) => prev.filter((item) => item.label !== activeTab));
       setMenuItems((prev) => prev.filter((item) => item.section !== activeTab));
       setActiveTab(menuSections.length > 1 ? menuSections[1].label : "");
+      setIsEditing(!isEditing);
     } catch (error) {
       console.error("Error deleting section:", error);
     }
@@ -95,12 +97,23 @@ const Tabs = () => {
         price: data.price,
         title: data.title,
       };
-      await axios.post("/api/items", newItem);
+      await axios.post("/api/menuItems", newItem);
       setMenuItems((prev) => [...prev, newItem]);
     } catch (error) {
       console.error("Error adding item:", error);
     }
   };
+
+  const handleCardDelete = async (id) => {
+    try{
+      await axios.delete(`/api/menuItems?id=${id}`);
+      setMenuItems((prev) => 
+        prev.filter((item) => item.id !== id)
+      )
+    }catch(error){
+      console.error(error)
+    }
+  }
 
   return (
     <div className="flex flex-col items-center">
@@ -115,7 +128,7 @@ const Tabs = () => {
                 name="tabs"
                 className="hidden"
                 checked={activeTab === tab.label}
-                onChange={() => setActiveTab(tab.label)}
+                onChange={() => {setActiveTab(tab.label); setIsEditing(!isEditing)}}
               />
               <label htmlFor={`tab-${tab.label}`} className={`relative flex items-center justify-center h-10 w-full text-sm font-medium cursor-pointer ${activeTab === tab.label ? "text-blue-600 font-semibold" : "text-gray-700"}`}>
                 {tab.label}
@@ -127,28 +140,31 @@ const Tabs = () => {
         </div>
       </div>
 
-      {/* Section Title */}
+
       <div className="max-w-3xl mx-auto text-center mt-1">
         <h1 className="text-4xl font-bold text-gray-900 leading-tight mb-2 pb-4 relative">
-          <DeleteForeverIcon onClick={sectionDelete} />
+          <span className={`bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 ${!isEditing && 'text-transparent'}`}>
+          <DeleteForeverIcon className=" cursor-pointer" onClick={sectionDelete} />
           {isEditing ? (
             <input type="text" className="w-48 text-center px-1 py-2 border border-gray-300 rounded-md" autoFocus placeholder="Enter text..." onChange={(e) => setNewSectionName(e.target.value)} value={newSectionName} />
           ) : (
             activeTab
           )}
+          </span>
           {isEditing ? <DoneIcon onClick={doneEditing} /> : <EditIcon onClick={() => { setNewSectionName(activeTab); setIsEditing(true); }} />}
+          <span className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-pink-500"></span>
         </h1>
-        <p className="text-lg text-gray-800 mb-8">Add Items in your {activeTab} section.</p>
+        <p className="text-lg text-gray-800 mb-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
       </div>
 
       {/* Menu Items */}
-      <div className="min-w-[75%] border-2 md:min-w-[65%] rounded-2xl max-h-[770px] overflow-auto flex justify-center md:justify-normal flex-wrap">
+      <div className="w-[75%] border-2 md:w-[76%] rounded-2xl max-h-[770px] overflow-auto flex justify-center md:justify-normal flex-wrap [&::-webkit-scrollbar]:hidden">
         {menuItems.filter((item) => item.section === activeTab).map((item) => (
-          <MenuItemCard key={item.id} image={item.image} title={item.title} price={item.price} originalPrice={item.originalPrice} />
+          <MenuItemCard key={item.id} image={item.image} title={item.title} price={item.price} originalPrice={item.originalPrice} deleteCard={() => handleCardDelete(item.id)} />
         ))}
         <MenuItemCard_default onDone={addNewItem} />
       </div>
-    </div>
+    </div >
   );
 };
 
