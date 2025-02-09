@@ -3,6 +3,8 @@ import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
 import Section from '@/components/menu_builder_section';
 import TypeWriter from '@/components/TypeWriter';
+import Menudone from '@/components/menuDone'
+import MenusetionpageAdd from '@/components/menusetionpageAdd';
 
 const Page = () => {
     return (
@@ -17,6 +19,8 @@ const Page = () => {
                 <div className=''>
                     <Section />
                 </div>
+                <Menudone />
+                <MenusetionpageAdd />
                 
 
             </section>

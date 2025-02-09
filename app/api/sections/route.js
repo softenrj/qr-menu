@@ -56,14 +56,18 @@ export async function DELETE(req) {
   try {
     await connectToDB();
     // Extract label from query parameters
-    const { searchParams } = new URL(req.url);
-    const label = searchParams.get("label");
+    const { label } = await req.json();
+    
 
     if (!label) {
       return NextResponse.json({ error: "Label is required" }, { status: 400 });
     }
 
-    const deletedSection = await Section.findOneAndDelete({ label });
+    console.log(label);
+
+    const deletedSection = await Section.findOneAndDelete({ 
+       label 
+     });
 
     if (!deletedSection) {
       return NextResponse.json({ error: "Section not found" }, { status: 404 });

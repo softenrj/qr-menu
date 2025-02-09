@@ -42,7 +42,13 @@ export async function DELETE(req) {
 
     const { searchParams } = new URL(req.url);
     const id = searchParams.get("id");
-    const label = searchParams.get("label");
+
+    let label;
+    if (!id) {
+      // Only parse JSON if ID is not provided
+      const body = await req.json();
+      label = body.label;
+    }
 
     if (id) {
       // ✅ Fix: Use _id for MongoDB documents
@@ -53,13 +59,14 @@ export async function DELETE(req) {
       }
       return NextResponse.json({ message: "Item deleted successfully" }, { status: 200 });
     }
+    
 
     if (label) {
       // ✅ Fix: Correct way to delete all items under a section
       const deleteAll = await Menu.deleteMany({ section: label });
 
       if (deleteAll.deletedCount === 0) {
-        return NextResponse.json({ error: "No items found under this section" }, { status: 404 });
+        return NextResponse.json({ error: "No items found under this section" }, { status: 202 });
       }
 
       return NextResponse.json({ message: "Section and all related items deleted" }, { status: 200 });

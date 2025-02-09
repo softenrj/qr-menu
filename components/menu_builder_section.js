@@ -75,8 +75,8 @@ const Tabs = () => {
   // Delete section
   const sectionDelete = async () => {
     try {
-      await axios.delete(`/api/sections?label=${activeTab}`);
-      await axios.delete(`/api/menuItems?label=${activeTab}`)
+      await axios.delete(`/api/sections`, { data: { label: activeTab } });
+      await axios.delete(`/api/menuItems`,{ data: { label: activeTab } });
       setMenuSections((prev) => prev.filter((item) => item.label !== activeTab));
       setMenuItems((prev) => prev.filter((item) => item.section !== activeTab));
       setActiveTab(menuSections.length > 1 ? menuSections[1].label : "");
@@ -118,52 +118,58 @@ const Tabs = () => {
   return (
     <div className="flex flex-col items-center">
       {/* Tabs Section */}
-      <div className="flex justify-center items-center mt-2 mb-10">
-        <div className="relative flex gap-6 items-center bg-white shadow-lg p-2 rounded-full pl-3 pr-3">
+      <div className="flex justify-center items-center mt-2 mb-10 md:w-[70rem] overflow-x-scroll-auto">
+        <div className="relative flex gap-6 items-center bg-white shadow-lg p-2 rounded-full pl-3 pr-3 ">
           {menuSections.map((tab) => (
-            <div key={tab.label} className="relative flex-auto">
+            <div key={tab.label} className="relative flex-auto ">
               <input
                 type="radio"
                 id={`tab-${tab.label}`}
                 name="tabs"
                 className="hidden"
                 checked={activeTab === tab.label}
-                onChange={() => {setActiveTab(tab.label); setIsEditing(!isEditing)}}
+                onChange={() => {setActiveTab(tab.label); setIsEditing(false)}}
               />
               <label htmlFor={`tab-${tab.label}`} className={`relative flex items-center justify-center h-10 w-full text-sm font-medium cursor-pointer ${activeTab === tab.label ? "text-blue-600 font-semibold" : "text-gray-700"}`}>
                 {tab.label}
               </label>
             </div>
           ))}
-          {isAddingSection && <input type="text" value={newSectionName} onChange={(e) => setNewSectionName(e.target.value)} onKeyDown={handleInput} autoFocus className="border rounded px-2 py-1" />}
+          {isAddingSection && <input type="text" value={newSectionName} onChange={(e) => setNewSectionName(e.target.value)} onKeyDown={handleInput} autoFocus className="border rounded px-1 py-1 w-40" />}
           <AddCircleOutlineIcon className="hover:text-blue-600 text-gray-700 cursor-pointer transition duration-300" onClick={addSection} />
         </div>
       </div>
 
 
-      <div className="max-w-3xl mx-auto text-center mt-1">
-        <h1 className="text-4xl font-bold text-gray-900 leading-tight mb-2 pb-4 relative">
-          <span className={`bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 ${!isEditing && 'text-transparent'}`}>
-          <DeleteForeverIcon className=" cursor-pointer" onClick={sectionDelete} />
-          {isEditing ? (
-            <input type="text" className="w-48 text-center px-1 py-2 border border-gray-300 rounded-md" autoFocus placeholder="Enter text..." onChange={(e) => setNewSectionName(e.target.value)} value={newSectionName} />
-          ) : (
-            activeTab
-          )}
-          </span>
-          {isEditing ? <DoneIcon onClick={doneEditing} /> : <EditIcon onClick={() => { setNewSectionName(activeTab); setIsEditing(true); }} />}
-          <span className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-pink-500"></span>
-        </h1>
-        <p className="text-lg text-gray-800 mb-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      </div>
+      {(activeTab) ?
+          <div className="max-w-3xl mx-auto text-center mt-1">
+          <h1 className="text-4xl font-bold text-gray-900 leading-tight mb-2 pb-4 relative">
+            <span className={`bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 ${!isEditing && 'text-transparent'}`}>
+            <DeleteForeverIcon className=" cursor-pointer" onClick={sectionDelete} />
+            {isEditing ? (
+              <input type="text" className="w-48 text-center px-1 py-2 border border-gray-300 rounded-md" autoFocus placeholder="Enter text..." onChange={(e) => setNewSectionName(e.target.value)} value={newSectionName} />
+            ) : (
+              activeTab
+            )}
+            </span>
+            {isEditing ? <DoneIcon onClick={doneEditing} /> : <EditIcon onClick={() => { setNewSectionName(activeTab); setIsEditing(true); }} />}
+            <span className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-pink-500"></span>
+          </h1>
+          <p className="text-lg text-gray-800 mb-8">Add item as by just click on default item card.</p>
+        </div>
+        : null  
+    }
 
       {/* Menu Items */}
-      <div className="w-[75%] border-2 md:w-[76%] rounded-2xl max-h-[770px] overflow-auto flex justify-center md:justify-normal flex-wrap [&::-webkit-scrollbar]:hidden">
-        {menuItems.filter((item) => item.section === activeTab).map((item) => (
-          <MenuItemCard key={item.id} image={item.image} title={item.title} price={item.price} originalPrice={item.originalPrice} deleteCard={() => handleCardDelete(item.id)} />
-        ))}
-        <MenuItemCard_default onDone={addNewItem} />
-      </div>
+      {(activeTab) ? 
+      <div className="w-[75%] border-2 md:w-[66%] rounded-2xl max-h-[770px] overflow-auto flex justify-center md:justify-normal flex-wrap [&::-webkit-scrollbar]:hidden">
+      {menuItems.filter((item) => item.section === activeTab).map((item) => (
+        <MenuItemCard key={item.id} image={item.image} title={item.title} price={item.price} originalPrice={item.originalPrice} deleteCard={() => handleCardDelete(item.id)} />
+      ))}
+      <MenuItemCard_default onDone={addNewItem} />
+    </div>
+    :null
+    }
     </div >
   );
 };
