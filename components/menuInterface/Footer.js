@@ -10,7 +10,7 @@ const Footer = () => {
                             className="floater w-full h-full absolute top-0 left-0 bg-violet-400 rounded-full duration-300 group-hover:-top-8 group-hover:shadow-2xl"
                         ></div>
                         <div
-                            className="icon relative z-10 w-full h-full flex items-center justify-center border-2 border-violet-400 rounded-full"
+                            className="icon relative  w-full h-full flex items-center justify-center border-2 border-violet-400 rounded-full"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +37,7 @@ const Footer = () => {
                             className="floater w-full h-full absolute top-0 left-0 bg-black rounded-full duration-300 group-hover:-top-8 group-hover:shadow-2xl"
                         ></div>
                         <div
-                            className="icon relative z-10 w-full h-full flex items-center justify-center border-2 border-black rounded-full"
+                            className="icon relative  w-full h-full flex items-center justify-center border-2 border-black rounded-full"
                         >
                             <svg
                                 height="24"
@@ -60,7 +60,7 @@ const Footer = () => {
                             className="floater w-full h-full absolute top-0 left-0 bg-blue-500 rounded-full duration-300 group-hover:-top-8 group-hover:shadow-2xl"
                         ></div>
                         <div
-                            className="icon relative z-10 w-full h-full flex items-center justify-center border-2 border-blue-500 rounded-full"
+                            className="icon relative  w-full h-full flex items-center justify-center border-2 border-blue-500 rounded-full"
                         >
                             <svg
                                 height="24"
@@ -83,7 +83,7 @@ const Footer = () => {
                             className="floater w-full h-full absolute top-0 left-0 bg-red-400 rounded-full duration-300 group-hover:-top-8 group-hover:shadow-2xl"
                         ></div>
                         <div
-                            className="icon relative z-10 w-full h-full flex items-center justify-center border-2 border-red-400 rounded-full"
+                            className="icon relative 0 w-full h-full flex items-center justify-center border-2 border-red-400 rounded-full"
                         >
                             <svg
                                 height="32"
@@ -102,7 +102,7 @@ const Footer = () => {
                 </div>
             </div>
             <br />
-            <p classNameName='text-gray-500 mt-[-10px]'>@Made with 💗 Softenrj</p>
+            <p className='text-gray-500 mt-[-10px]'>@Made with 💗 Softenrj</p>
 
         </div>
     );

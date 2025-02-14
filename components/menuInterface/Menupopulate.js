@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import ItemCard from './itemCard';
 import axios from 'axios';
 
+
 const Menupopulate = ({ activeSection }) => {
     const [items, setItems] = useState([]);
 
@@ -21,7 +22,7 @@ const Menupopulate = ({ activeSection }) => {
     return (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
             {items
-                .filter((item) => activeSection === "All" || item.section === activeSection) // ✅ Show all items when "All" is selected
+                .filter((item) => activeSection === "All" || item.section === activeSection) 
                 .map((item) => (
                     <ItemCard
                         key={item.id}

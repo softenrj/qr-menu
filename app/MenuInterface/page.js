@@ -1,13 +1,16 @@
 "use client"
-import React from 'react';
+import React,{useContext} from 'react';
 import Navbar from '@/components/menuInterface/navbar';
 import Sections from '@/components/menuInterface/sections';
 import SectionTitle from '@/components/menuInterface/SectionTitle';
 import Menupopulate from '@/components/menuInterface/Menupopulate';
 import Footer from '@/components/menuInterface/Footer';
+import Cart from '@/components/menuInterface/Cart';
+import ItemContext from '@/components/menuInterface/itemContext';
 
 const Page = () => {
     const [activeSection,setAS] = React.useState("All");
+    const [itemprop,setitemprop] = React.useState([]);
     const handleSection = (s) => {
         setAS(s);
     }
@@ -27,7 +30,13 @@ const Page = () => {
             </div>
             <Sections setSec={handleSection} />
             <SectionTitle activesection={activeSection}/>
+            <ItemContext.Provider value={{itemprop,setitemprop}}>
             <Menupopulate activeSection={activeSection} />
+            {
+                itemprop.length !== 0 ?
+                <Cart />:null
+            }
+            </ItemContext.Provider>
             <Footer />
             
         </div>

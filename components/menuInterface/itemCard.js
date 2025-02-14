@@ -1,22 +1,78 @@
-import React from 'react';
+"use client";
+import React, { useContext } from "react";
+import ItemContext from "./itemContext";
 
-const ItemCard = ({ title, image, orp, pr }) => {
+const ItemCard = ({ id, title, image, orp, pr }) => {
+    const { itemprop, setitemprop } = useContext(ItemContext);
+
+    const currentItem = itemprop.find(item => item.id === id);
+    const itemCount = currentItem ? currentItem.quantity : 0;
+
+    const isInCart = itemCount > 0;
+
+    const toggleCart = () => {
+        if (isInCart) {
+            setitemprop(prev => prev.filter(item => item.id !== id)); 
+        } else {
+            setitemprop(prev => [...prev, { id, image, quantity: 1 }]); 
+        }
+    };
+
+    const addMore = () => {
+        setitemprop(prev =>
+            prev.map(item => 
+                item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+                
+            )
+        );
+        
+    };
+
+    const removeOne = () => {
+        setitemprop(prev =>
+            prev
+                .map(item => 
+                    item.id === id ? { ...item, quantity: item.quantity - 1 } : item
+                )
+                .filter(item => item.quantity > 0) 
+        );
+    };
+
     return (
         <div className="inline-block w-44 rounded-xl shadow-md p-3">
             <div className="relative">
-                
-                <div className="absolute top-2 right-3 h-8 w-14 bg-white border-2 border-green-300 flex items-center justify-center rounded-lg text-xl cursor-pointer hover:bg-green-100 transition-all">
-                    +
+                <div 
+                    className="absolute top-2 right-3 h-8 w-14 bg-white border-2 border-green-300 flex items-center justify-center rounded-lg text-xl cursor-pointer hover:bg-green-100 transition-all" 
+                    onClick={toggleCart}
+                >
+                    {isInCart ? 'X' : '+'} 
                 </div>
-                
-                <img 
-                    src={image} 
-                    alt="Food Item" 
+                <img
+                    src={image}
+                    alt="Food Item"
                     className="h-36 w-full rounded-2xl object-cover"
                 />
             </div>
 
-           
+   
+            {isInCart && (
+                <div className="addmore flex justify-between items-center px-1 rounded-full h-6 w-16 bg-green-400 mt-2 -mb-1">
+                    <span 
+                        className="text-white bg-green-500 h-4 w-4 rounded-full flex justify-center items-center cursor-pointer" 
+                        onClick={removeOne}
+                    >
+                        -
+                    </span>
+                    <span>{itemCount}</span> 
+                    <span 
+                        className="text-white bg-green-500 h-4 w-4 rounded-full flex justify-center items-center cursor-pointer" 
+                        onClick={addMore}
+                    >
+                        +
+                    </span>
+                </div>
+            )}
+
             <p className="font-dmSans mt-2 text-lg font-semibold text-gray-800 text-start">
                 {title}
             </p>
