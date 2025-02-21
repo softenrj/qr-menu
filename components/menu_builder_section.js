@@ -19,7 +19,7 @@ const Tabs = () => {
   const [menuItems, setMenuItems] = useState([]);
   const router = useRouter();
 
-  // Fetch sections and menu items from database
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -37,7 +37,7 @@ const Tabs = () => {
     fetchData();
   }, []);
 
-  // Add new section
+
   const addSection = () => setIsAddingSection(!isAddingSection);
 
   const handleInput = async (e) => {
@@ -53,7 +53,7 @@ const Tabs = () => {
     }
   };
 
-  // Edit section name
+
   const doneEditing = async () => {
     if (!newSectionName.trim()) return;
     try {
@@ -72,7 +72,7 @@ const Tabs = () => {
     }
   };
 
-  // Delete section
+
   const sectionDelete = async () => {
     try {
       await axios.delete(`/api/sections`, { data: { label: activeTab } });
@@ -86,7 +86,7 @@ const Tabs = () => {
     }
   };
 
-  // Add new item
+
   const addNewItem = async (data) => {
     try {
       const newItem = {
@@ -162,7 +162,7 @@ const Tabs = () => {
 
       {/* Menu Items */}
       {(activeTab) ? 
-      <div className="w-[75%] border-2 md:w-[66%] rounded-2xl max-h-[770px] overflow-auto flex justify-center md:justify-normal flex-wrap [&::-webkit-scrollbar]:hidden">
+      <div className="w-[75%] border-2 md:w-[87%] rounded-2xl max-h-[770px] overflow-auto flex justify-center md:justify-normal flex-wrap [&::-webkit-scrollbar]:hidden">
       {menuItems.filter((item) => item.section === activeTab).map((item) => (
         <MenuItemCard key={item.id} image={item.image} title={item.title} price={item.price} originalPrice={item.originalPrice} deleteCard={() => handleCardDelete(item.id)} />
       ))}

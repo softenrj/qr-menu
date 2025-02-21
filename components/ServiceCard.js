@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const services = [
     {
@@ -33,10 +34,12 @@ const ServiceCard = () => {
                     className="w-full md:basis-1/2 lg:w-1/2 max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700"
                 >
                     <div className="h-72 max-h-72">
-                        <img
+                        <Image
                             className="w-full h-full object-cover rounded-t-lg"
                             src={service.imgSrc}
                             alt={service.title}
+                            width={600}
+                            height={300}
                             loading="lazy"
                         />
                     </div>

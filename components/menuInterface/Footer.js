@@ -5,6 +5,7 @@ const Footer = () => {
         <div className='flex flex-col items-center mt-10'>
             <div className="flex items-center gap-4">
                 <div className="social-button">
+                    <a href="https://www.instagram.com/raj_s.e?igsh=YjZqZmVsd3kwNWsx">
                     <button className="relative w-12 h-12 rounded-full group">
                         <div
                             className="floater w-full h-full absolute top-0 left-0 bg-violet-400 rounded-full duration-300 group-hover:-top-8 group-hover:shadow-2xl"
@@ -30,8 +31,10 @@ const Footer = () => {
                             </svg>
                         </div>
                     </button>
+                    </a>
                 </div>
                 <div className="social-button">
+                    <a href="https://github.com/softenrj">
                     <button className="relative w-12 h-12 rounded-full group">
                         <div
                             className="floater w-full h-full absolute top-0 left-0 bg-black rounded-full duration-300 group-hover:-top-8 group-hover:shadow-2xl"
@@ -53,8 +56,10 @@ const Footer = () => {
                             </svg>
                         </div>
                     </button>
+                    </a>
                 </div>
                 <div className="social-button">
+                    <a href="https://www.linkedin.com/in/raj-sharma-23447527b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">
                     <button className="relative w-12 h-12 rounded-full group">
                         <div
                             className="floater w-full h-full absolute top-0 left-0 bg-blue-500 rounded-full duration-300 group-hover:-top-8 group-hover:shadow-2xl"
@@ -76,8 +81,10 @@ const Footer = () => {
                             </svg>
                         </div>
                     </button>
+                    </a>
                 </div>
                 <div className="social-button">
+                    <a href="mailto:rjsharmase@gmail.com">
                     <button className="relative w-12 h-12 rounded-full group">
                         <div
                             className="floater w-full h-full absolute top-0 left-0 bg-red-400 rounded-full duration-300 group-hover:-top-8 group-hover:shadow-2xl"
@@ -99,6 +106,7 @@ const Footer = () => {
                             </svg>
                         </div>
                     </button>
+                    </a>
                 </div>
             </div>
             <br />

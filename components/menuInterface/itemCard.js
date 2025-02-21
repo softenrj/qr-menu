@@ -5,36 +5,33 @@ import ItemContext from "./itemContext";
 const ItemCard = ({ id, title, image, orp, pr }) => {
     const { itemprop, setitemprop } = useContext(ItemContext);
 
-    const currentItem = itemprop.find(item => item.id === id);
+    const currentItem = (itemprop || []).find(item => item.id === id);
     const itemCount = currentItem ? currentItem.quantity : 0;
-
     const isInCart = itemCount > 0;
 
     const toggleCart = () => {
-        if (isInCart) {
-            setitemprop(prev => prev.filter(item => item.id !== id)); 
-        } else {
-            setitemprop(prev => [...prev, { id, image, quantity: 1 }]); 
-        }
+        setitemprop(prev =>
+            isInCart
+                ? prev.filter(item => item.id !== id)
+                : [...prev, { id, title, image, quantity: 1, pr }]
+        );
     };
 
     const addMore = () => {
         setitemprop(prev =>
-            prev.map(item => 
-                item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-                
+            prev.map(item =>
+                item.id === id ? { ...item, quantity: (item.quantity || 0) + 1 } : item
             )
         );
-        
     };
 
     const removeOne = () => {
         setitemprop(prev =>
             prev
-                .map(item => 
-                    item.id === id ? { ...item, quantity: item.quantity - 1 } : item
+                .map(item =>
+                    item.id === id ? { ...item, quantity: (item.quantity || 1) - 1 } : item
                 )
-                .filter(item => item.quantity > 0) 
+                .filter(item => item.quantity > 0)
         );
     };
 
@@ -54,18 +51,17 @@ const ItemCard = ({ id, title, image, orp, pr }) => {
                 />
             </div>
 
-   
             {isInCart && (
-                <div className="addmore flex justify-between items-center px-1 rounded-full h-6 w-16 bg-green-400 mt-2 -mb-1">
+                <div className="addmore flex justify-between items-center px-1 rounded-full h-6 w-16 bg-[#239e44] mt-2 -mb-1">
                     <span 
-                        className="text-white bg-green-500 h-4 w-4 rounded-full flex justify-center items-center cursor-pointer" 
+                        className="text-white bg-[#1d7d36] h-4 w-4 rounded-full flex justify-center items-center cursor-pointer" 
                         onClick={removeOne}
                     >
                         -
                     </span>
                     <span>{itemCount}</span> 
                     <span 
-                        className="text-white bg-green-500 h-4 w-4 rounded-full flex justify-center items-center cursor-pointer" 
+                        className="text-white bg-[#1d7d36] h-4 w-4 rounded-full flex justify-center items-center cursor-pointer" 
                         onClick={addMore}
                     >
                         +

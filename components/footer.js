@@ -1,8 +1,12 @@
+"use client"
 import React from "react";
-import Link from "next/link";
 import { Twitter, Facebook, Instagram, GitHub } from "@mui/icons-material";
 
 function Footer() {
+  const [date,setdate] = React.useState("");
+  React.useEffect(() => {
+    setdate(new Date().getFullYear())
+  },[])
   return (
     <footer className="relative pt-2 pb-4 bg-[#ffffff]">
       <div className="container mx-auto px-8 pt-2">
@@ -38,7 +42,7 @@ function Footer() {
 
 
         <div className="mt-8 text-center text-gray-700 text-sm">
-          © {new Date().getFullYear()} Soften. All rights reserved.
+          © {date} Soften. All rights reserved.
         </div>
       </div>
     </footer>
