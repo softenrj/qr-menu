@@ -12,7 +12,7 @@ const DashboardLayout = ({ children }) => {
 
         const fetchUsers = async () => {
             try {
-                const res = await fetch("/api/Activeuser");
+                const res = await fetch("/api/Activeuser?notifi=true");
                 const data = await res.json();
 
                 if (isMounted && data.activeUsers) {

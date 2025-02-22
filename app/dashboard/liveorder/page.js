@@ -87,6 +87,7 @@ const LiveOrders = () => {
                 <div>
                   <h3 className="font-semibold text-lg">#{order._id.slice(-4)}</h3>
                   <p className="text-gray-500 text-sm">{order.time}</p>
+                  <p className="text-gray-500 text-sm">Total Amount: {order.total_Amount}</p>
                 </div>
                 <span className={`px-3 py-1 rounded-full text-sm ${
                   order.status === 'ready' ? 'bg-green-100 text-green-800' :

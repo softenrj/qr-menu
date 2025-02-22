@@ -21,7 +21,7 @@ export async function GET() {
 export async function POST(req) {
   try {
     await connectToDB();
-    const { table, items, status } = await req.json();
+    const { table, items, status, total_Amount } = await req.json();
 
     if (!table || !items.length) {
       return NextResponse.json(
@@ -33,6 +33,7 @@ export async function POST(req) {
     const newOrder = new Order({
       table,
       items,
+      total_Amount,
       status,
       time: new Date().toLocaleTimeString(),
     });

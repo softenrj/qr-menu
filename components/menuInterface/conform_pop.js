@@ -3,9 +3,14 @@ import React, { useContext } from "react";
 import axios from "axios";
 import ItemContext from "./itemContext";
 
-const ConformPop = ({ onClose,doneorder,userName }) => {
+const ConformPop = ({ onClose, doneorder, userName }) => {
     const { itemprop, setitemprop } = useContext(ItemContext);
-    console.log(userName,typeof(userName));
+    const totalPrice = React.useMemo(() => {
+        return itemprop.reduce((acc, item) => {
+            const priceValue = parseFloat(item.pr.replace(/[^0-9.]/g, ""));
+            return acc + priceValue * item.quantity;
+        }, 0);
+    }, [itemprop]);
 
     const handleOrder = async (paymentType) => {
         try {
@@ -15,7 +20,8 @@ const ConformPop = ({ onClose,doneorder,userName }) => {
                 items: itemprop.map(item => ({
                     name: item.title,
                     quantity: item.quantity
-                }))
+                })),
+                total_Amount: totalPrice.toFixed(2)
             });
 
             if (response.status === 201) {

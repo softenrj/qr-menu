@@ -2,9 +2,15 @@ import mongoose from "mongoose";
 
 const OrderHistorySchema = new mongoose.Schema({
     table: String,
-    items: [String],
+    items: [
+        {
+            name: String,
+            quantity: Number
+        }
+    ],
     status: String, // completed | canceled
     time: String,
+    total_Amount: Number,
     createdAt: { type: Date, default: Date.now }
 });
 

@@ -22,6 +22,7 @@ export async function POST(req) {
     const orderHistory = new OrderHistory({
       table: order.table,
       items: order.items,
+      total_Amount: order.total_Amount,
       status: order.status,
       time: order.time,
       createdAt: order.createdAt,
