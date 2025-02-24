@@ -19,7 +19,7 @@ const services = [
         title: "Real-Time Order History",
         description: "Give customers instant access to their past orders, making it easy to track previous meals and reorder their favorites effortlessly.",
         imgSrc: "/serviceTab/s-3.jpg",
-        link: "#"
+        link: "/dashboard/transactionhistory"
     },
 ];
 

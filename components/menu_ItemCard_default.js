@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 const MenuItemCard = ({onDone}) => {
     const [image, setImage] = useState("/qrbuilder/default-img.png");
     const [title, setTitle] = useState("Name of your Food");
-    const [price, setPrice] = useState("$449");
-    const [originalPrice, setOriginalPrice] = useState("$699");
+    const [price, setPrice] = useState("₹449");
+    const [originalPrice, setOriginalPrice] = useState("₹699");
     const [isEditing, setIsEditing] = useState({ title: false, price: false, originalPrice: false });
     
     const handleImageChange = async (event) => {
@@ -46,7 +46,6 @@ const MenuItemCard = ({onDone}) => {
             <div className="relative mx-3 mt-3 flex h-40 md:h-64 overflow-hidden rounded-xl">
                 <input type="file" accept="image/*" onChange={handleImageChange} className="absolute z-10 opacity-0 w-full h-full cursor-pointer" />
                 <img src={image} alt="Uploaded preview" className='object-cover rounded-2xl' />
-                <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-xs font-medium text-white">39% OFF</span>
             </div>
             <div className="mt-3 px-4 pb-4">
                 {isEditing.title ? (

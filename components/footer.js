@@ -1,6 +1,6 @@
 "use client"
 import React from "react";
-import { Twitter, Facebook, Instagram, GitHub } from "@mui/icons-material";
+import { LinkedIn, Facebook, Instagram, GitHub } from "@mui/icons-material";
 
 function Footer() {
   const [date,setdate] = React.useState("");
@@ -23,9 +23,9 @@ function Footer() {
 
           <div className="flex space-x-4">
             {[
-              { href: "#", icon: <Twitter fontSize="small" />, color: "text-blue-400" },
-              { href: "#", icon: <Facebook fontSize="small" />, color: "text-blue-600" },
-              { href: "#", icon: <Instagram fontSize="small" />, color: "text-pink-400" },
+              { href: "https://www.linkedin.com/in/raj-sharma-23447527b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app ", icon: <LinkedIn fontSize="small" />, color: "text-blue-600" },
+              { href: "https://www.facebook.com/profile.php?id=100093479301790&mibextid=ZbWKwL", icon: <Facebook fontSize="small" />, color: "text-blue-600" },
+              { href: "https://www.instagram.com/raj_s.e?igsh=YjZqZmVsd3kwNWsx", icon: <Instagram fontSize="small" />, color: "text-pink-400" },
               { href: "https://github.com/softenrj", icon: <GitHub fontSize="small" />, color: "text-black" },
             ].map((item, index) => (
               <a

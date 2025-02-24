@@ -7,7 +7,7 @@ import Menupopulate from '@/components/menuInterface/Menupopulate';
 import Footer from '@/components/menuInterface/Footer';
 import Cart from '@/components/menuInterface/Cart';
 import ItemContext from '@/components/menuInterface/itemContext';
-import Conformpage from '@/components/menuInterface/Conformpage';
+import Confirmpage from '@/components/menuInterface/Confirmpage';
 import { useParams } from 'next/navigation';
 
 const Page = () => {
@@ -58,7 +58,7 @@ const Page = () => {
             }
             {
                 doneAdd ? 
-                <Conformpage doneAdd={handleprocess} userName={user} />:null
+                <Confirmpage doneAdd={handleprocess} userName={user} />:null
             }
             </ItemContext.Provider>
             

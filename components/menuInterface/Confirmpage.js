@@ -2,7 +2,7 @@
 import React, { useContext, useRef, useMemo } from "react";
 import { motion } from "framer-motion";
 import ItemContext from "./itemContext";
-import ConformPop from "./conform_pop";
+import ConfirmPop from "./confirm_pop";
 
 const AnimatedDiv = ({ doneAdd,userName }) => {
     const { itemprop, setitemprop } = useContext(ItemContext);
@@ -88,7 +88,7 @@ const AnimatedDiv = ({ doneAdd,userName }) => {
                 </div>
 
                 
-                    {placeorder ? <ConformPop userName={userName} doneorder={doneAdd} onClose={handlePlaceorder} cartItems={itemprop} /> : null}
+                    {placeorder ? <ConfirmPop userName={userName} doneorder={doneAdd} onClose={handlePlaceorder} cartItems={itemprop} /> : null}
 
                 
 
