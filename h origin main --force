@@ -1,0 +1,107 @@
+[33mcommit cca1c30598e3ef26e34844f389e78a2f9ccb8564[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Softenrj <rjsharmase@example.com>
+Date:   Mon Feb 24 23:03:16 2025 +0530
+
+    Stable version 1.0.0
+
+[33mcommit 23d590e7703e38591f5fa751d377d1dbe53ad560[m
+Author: Softenrj <rjsharmase@example.com>
+Date:   Mon Feb 24 22:57:41 2025 +0530
+
+    All done
+
+[33mcommit 9ccbd826e0396f8ad147ae597fcca88541b78073[m
+Author: Softenrj <rjsharmase@example.com>
+Date:   Sat Feb 22 22:36:59 2025 +0530
+
+    feat: All functions now working as expected
+
+[33mcommit 82d0f960330b17ee591d28c5afe012c05073ed10[m
+Author: Softenrj <rjsharmase@example.com>
+Date:   Sat Feb 22 00:25:20 2025 +0530
+
+    feat: Improved UI and bug fixes
+
+[33mcommit 461762e9921e01bca7193529862adaa6fa13835e[m
+Author: Softenrj <rjsharmase@example.com>
+Date:   Sat Feb 15 00:20:49 2025 +0530
+
+    feat: Finalizing core functionalities
+
+[33mcommit 6eecbcb9cd84cc210e4c82c1e1465e2bb913a200[m
+Author: Softenrj <rjsharmase@example.com>
+Date:   Wed Feb 12 23:28:37 2025 +0530
+
+    feat: Optimized dashboard calculations
+
+[33mcommit 081bfe721c32bb0c7dd76e0abe512781bccf9b68[m
+Author: Softenrj <rjsharmase@example.com>
+Date:   Wed Feb 12 00:07:59 2025 +0530
+
+    feat: Day 14 completed successfully
+
+[33mcommit 34ecfd5f0e11744e3b0de085543dadeac275225d[m
+Author: Softenrj <rjsharmase@example.com>
+Date:   Sun Feb 9 23:22:45 2025 +0530
+
+    feat: Enhanced dashboard and user mobile view
+
+[33mcommit e69fba052b94bf54fc5e3f4f30590d69273a8479[m
+Author: Softenrj <rjsharmase@example.com>
+Date:   Sat Feb 8 23:54:25 2025 +0530
+
+    fix: Resolved database integration issues
+
+[33mcommit f98b4e63f35c51463f448ea5cc157449880be159[m
+Author: Softenrj <rjsharmase@example.com>
+Date:   Fri Feb 7 23:23:08 2025 +0530
+
+    feat: Integrated MongoDB successfully
+
+[33mcommit 699da8f7fcb27907b52635dcab769012dbd81b4a[m
+Author: Softenrj <rjsharmase@example.com>
+Date:   Thu Feb 6 23:06:15 2025 +0530
+
+    feat: Experimenting with new approaches (day 8)
+
+[33mcommit 632f6b8bebe12e1d4f3b4202071ea4b353ba3263[m
+Author: Softenrj <rjsharmase@example.com>
+Date:   Wed Feb 5 23:05:03 2025 +0530
+
+    feat: Major UI updates on day 7
+
+[33mcommit d3038ecfe09b7bcd4d5bc227e9f03b28fd46676b[m
+Author: Softenrj <rjsharmase@example.com>
+Date:   Tue Feb 4 22:37:01 2025 +0530
+
+    feat: Day 6 progress with enhancements
+
+[33mcommit b53dcf97db9ed9971c1a7c21dbdc1df3b5c0270c[m
+Author: Softenrj <rjsharmase@example.com>
+Date:   Mon Feb 3 22:44:50 2025 +0530
+
+    feat: Implemented new features on day 5
+
+[33mcommit 1fa10c10ed7004311ae4d6fa958dc6c0320ce059[m
+Author: Softenrj <rjsharmase@example.com>
+Date:   Sun Feb 2 23:08:43 2025 +0530
+
+    feat: Completed day 4 with major updates
+
+[33mcommit f4ec65cb9b20c32db7a15e434284b4fcdd913c35[m
+Author: Softenrj <rjsharmase@example.com>
+Date:   Sat Feb 1 22:23:31 2025 +0530
+
+    feat: Finished day 3 tasks successfully
+
+[33mcommit f340904f0392a29ea5cf9e82f203e8011e852eb9[m
+Author: Softenrj <rjsharmase@example.com>
+Date:   Fri Jan 31 22:39:27 2025 +0530
+
+    feat: Completed day 2 development
+
+[33mcommit bdd8ceaf4244db188b369bc4568c87fe39c1e68f[m
+Author: Softenrj <rjsharmase@example.com>
+Date:   Wed Jan 29 23:20:57 2025 +0530
+
+    feat: Initial project setup
