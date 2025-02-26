@@ -69,5 +69,5 @@ Contributions are welcome! Submit issues or pull requests to improve the project
 ---
 
 ## 📬 Contact
-📧 Email: rjsharmase@gmail.com 
+📧 Email: rjsharmase@gmail.com
 
