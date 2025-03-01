@@ -1,8 +1,25 @@
 "use client";
 import React, { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import axios from "axios";
+
 
 const AiChat = ({ onClose }) => {
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+        const fetchItem = async () => {
+            try {
+                const resp = await axios.get('/api/menuItems');
+                setItems(resp.data.map((i) => (
+                    i.title
+                )));
+            } catch (error) {
+                console.error("Error fetching menu items:", error);
+            }
+        };
+        fetchItem();
+    }, []);
     const [isVisible, setIsVisible] = useState(true);
     const [inputMessage, setInputMessage] = useState("");
     const [messages, setMessages] = useState([
@@ -22,7 +39,9 @@ const AiChat = ({ onClose }) => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ message: userMessage }),
+                body: JSON.stringify({ message: userMessage,
+                    Avitem: items
+                 }),
             });
     
             if (!response.ok) {

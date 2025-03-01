@@ -3,7 +3,7 @@ import axios from "axios";
 
 export async function POST(req) {
     try {
-        const { message } = await req.json(); // Parse request body
+        const { message ,Avitem } = await req.json(); // Parse request body
 
         if (!message) {
             return NextResponse.json({ error: "Message is required" }, { status: 400 });
@@ -16,10 +16,14 @@ export async function POST(req) {
                 {
                     parts: [
                         {
-                            text: `Act as a restaurant AI assistant. Respond to this query: ${message}.
-                                   Keep responses under 3 sentences. Be friendly and food-focused.`
+                            text: `You are a friendly restaurant AI assistant. Answer only food-related questions and keep responses under three sentences. Do not generate code, provide technical support, or discuss non-food topics. Focus on menu items and dining experiences.  
+                            
+                            Available food items in our restaurant: ${Avitem}  
+                    
+                            Question: ${message}`
                         }
                     ]
+                    
                 }
             ]
         }, {
