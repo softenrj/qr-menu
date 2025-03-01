@@ -2,9 +2,9 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 
 const OrderTrackingChart = ({ orders }) => {
     // Convert orders array into a format suitable for the graph
-    const chartData = orders.map((items, index) => ({
+    const chartData = orders.slice(0, Math.ceil(orders.length / 2)).map((order, index) => ({
         order: `Order ${index + 1}`,
-        items,
+        items: Array.isArray(order) ? order.length : order, // Ensure numerical value
     }));
 
     return (
@@ -16,7 +16,7 @@ const OrderTrackingChart = ({ orders }) => {
                         <XAxis dataKey="order" tick={{ fontSize: 12 }} />
                         <YAxis />
                         <Tooltip />
-                        <Line type="monotone" dataKey="items" stroke="#4F46E5" strokeWidth={3} dot={{ r: 1 }} />
+                        <Line type="monotone" dataKey="items" stroke="#4F46E5" strokeWidth={3} />
                     </LineChart>
                 </ResponsiveContainer>
             </div>
