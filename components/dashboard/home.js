@@ -2,7 +2,6 @@
 import React from "react";
 import { useSession } from "next-auth/react";
 import TypeWriter from "../TypeWriter";
-import Image from "next/image";
 import AccountDropdown from "../AccountDropdown";
 import axios from "axios";
 import OrderTrackingChart from "./orderTracking";

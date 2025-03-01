@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import axios from "axios";
 
 const AiChat = ({ onClose }) => {
     const [isVisible, setIsVisible] = useState(true);

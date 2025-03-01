@@ -8,6 +8,7 @@ const AnimatedDiv = ({ doneAdd,userName }) => {
     const { itemprop, setitemprop } = useContext(ItemContext);
     const containerRef = useRef(null);
     const [placeorder,setplaceorder] = React.useState(false);
+    const [isVisible, setIsVisible] = React.useState(true);
 
     const handlePlaceorder = () => {
         setplaceorder(!placeorder)
@@ -23,20 +24,15 @@ const AnimatedDiv = ({ doneAdd,userName }) => {
 
     return (
         <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "30rem", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.2, ease: "easeInOut" }}
-            className="fixed w-full bg-white z-20 bottom-0 rounded-t-3xl overflow-hidden shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]"
-            drag="y"
-            dragConstraints={{ top: 0, bottom: 80 }}
-            dragElastic={0.2} 
-            dragMomentum={false}
-            onDragEnd={(_, info) => {
-                if (info.offset.y > 100) {
-                    doneAdd();
-                }
-            }}
+        initial={{ y: 300, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: 300, opacity: 0 }}
+        transition={{ type: "spring", stiffness: 200, damping: 20 }}
+        className="fixed w-[90%] ml-[5%] mb-3 max-w-md bg-white z-50 bottom-0 rounded-2xl overflow-hidden shadow-xl border border-gray-100"
+        drag="y"
+        dragConstraints={{ top: 0, bottom: 0 }}
+        dragElastic={0.1}
+        onDragEnd={(_, { offset }) => offset.y > 50 && (setIsVisible(false), doneAdd())}
         >
             
             <div className="w-full flex justify-center items-center pt-3 cursor-grab active:cursor-grabbing">
