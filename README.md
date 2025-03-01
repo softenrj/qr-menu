@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🍽️ QR MENU - Digital Menu & Smart Ordering System
 
-## Getting Started
 
-First, run the development server:
+## 🚀 Overview
+QR MENU is a **Next.js-based** digital restaurant menu and ordering system designed to replace traditional **paper menus**. It allows **restaurant owners** to dynamically update their menus, generate **QR codes for tables**, and track **orders, revenue, and visitor trends** in real-time. 
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+🔹 **No More Reprinting Menus** – Update anytime, instantly!  
+🔹 **QR Code Table Management** – Unique QR per table for **seamless ordering**.  
+🔹 **Real-time Orders & Analytics** – Track transactions, revenue, and customer trends.  
+🔹 **Secure Owner Login** – Prevents unauthorized menu access using **NextAuth.js**.  
+🔹 **Smooth UI & Mobile Responsive** – Powered by **Next.js + Tailwind CSS**.
+
+---
+
+## 🏗️ Tech Stack
+- **Frontend:** Next.js (React) + Tailwind CSS  
+- **Backend:** Node.js + Express.js  
+- **Database:** MongoDB  
+- **Authentication:** NextAuth.js  
+  
+---
+
+## 📌 Installation & Setup
+### **1️⃣ Clone the Repository**
+```sh
+git clone https://github.com/Softenrj/qr-menu.git
+cd qr-menu
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### **2️⃣ Install Dependencies**
+```sh
+# Install dependencies
+npm install
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### **3️⃣ Environment Variables**
+Create a `.env.local` file and add the following:
+```sh
+NEXTAUTH_URL=your-site-url
+MONGODB_URL=your-mongodb-url
+NEXTAUTH_SECRET=your-secret-key
+//example
+GITHUB_ID=key
+GITHUB_SECRET=key
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### **4️⃣ Start the Development Server**
+```sh
+npm run dev
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🎨 UI & User Experience
+✅ **Modern, responsive design** with **Tailwind CSS**.  
+✅ **Smooth animations & intuitive navigation** for a better experience.  
+✅ **Mobile-first approach** ensures seamless use across devices.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## 📜 License
+This project is intended for **educational purposes only**. If you wish to use it for commercial or other purposes, please request **permission**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🤝 Contributing
+Contributions are welcome! Submit issues or pull requests to improve the project.
+
+---
+
+## 📬 Contact
+📧 Email: rjsharmase@gmail.com 
+

@@ -9,6 +9,7 @@ import Cart from '@/components/menuInterface/Cart';
 import ItemContext from '@/components/menuInterface/itemContext';
 import Confirmpage from '@/components/menuInterface/Confirmpage';
 import { useParams } from 'next/navigation';
+import AIInterface from '@/components/menuInterface/AI_interface';
 
 const Page = () => {
     const [activeSection,setAS] = React.useState("All");
@@ -48,6 +49,7 @@ const Page = () => {
                 </h1>
                 <hr className="border-b-0 border-dotted border-8 w-24 mt-4 mx-auto" />
             </div>
+            <AIInterface />
             <Sections setSec={handleSection} />
             <SectionTitle activesection={activeSection}/>
             <ItemContext.Provider value={{itemprop,setitemprop}}>
