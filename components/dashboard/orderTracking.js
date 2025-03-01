@@ -16,7 +16,7 @@ const OrderTrackingChart = ({ orders }) => {
                         <XAxis dataKey="order" tick={{ fontSize: 12 }} />
                         <YAxis />
                         <Tooltip />
-                        <Line type="monotone" dataKey="items" stroke="#4F46E5" strokeWidth={3} />
+                        <Line type="monotone" dataKey="items" stroke="#4F46E5" strokeWidth={3} dot={{ r: 0 }} />
                     </LineChart>
                 </ResponsiveContainer>
             </div>
