@@ -35,7 +35,7 @@ npm install
 ```
 
 ### **3️⃣ Environment Variables**
-Create a `.env.local` file and add the following:
+Create a `.env` file and add the following:
 ```sh
 NEXTAUTH_URL=your-site-url
 MONGODB_URL=your-mongodb-url
