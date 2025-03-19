@@ -43,7 +43,7 @@ NEXTAUTH_SECRET=your-secret-key
 //example
 GITHUB_ID=key
 GITHUB_SECRET=key
-GEMINI_KEY=key
+GEMINI_URL=key 
 ```
 
 ### **4️⃣ Start the Development Server**
