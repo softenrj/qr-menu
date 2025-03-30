@@ -58,6 +58,13 @@ npm run dev
 ✅ **Smooth animations & intuitive navigation** for a better experience.  
 ✅ **Mobile-first approach** ensures seamless use across devices.
 
+## 🔒 Access the Dashboard without authentication for **testing purposes**.
+`Remove This File from 👉 'qr-menu/app/dashboard/page.js'`
+```sh
+if (status === "unauthenticated") {
+        router.push('/');
+      }
+```
 
 
 ## 📜 License
