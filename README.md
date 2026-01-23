@@ -11,6 +11,7 @@ QR MENU is a **Next.js-based** digital restaurant menu and ordering system desig
 🔹 **Secure Owner Login** – Prevents unauthorized menu access using **NextAuth.js**.  
 🔹 **Smooth UI & Mobile Responsive** – Powered by **Next.js + Tailwind CSS**.
 
+
 ---
 
 ## 🏗️ Tech Stack
