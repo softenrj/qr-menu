@@ -11,6 +11,7 @@ import { useAppSelector } from "@/hook/redux"
 import { deleteApi, getApi, postApi } from "@/utils/common"
 import { ApiResponse } from "@/utils/api"
 import { GET_QR, POST_QR, REMOVE_QR } from "@/utils/APIConstant"
+import { AppUrl } from "@/utils/constants"
 
 type QRItem = {
   _id: string
@@ -56,7 +57,7 @@ const GenerateQRPage = () => {
       return
     }
 
-    setPreviewQR(`${BASE_URL}/menu/${merchantId}/${inputName}`)
+    setPreviewQR(`${BASE_URL}/menu/${merchantId}?id=${inputName}`)
   }
 
   const handleSaveQR = async () => {

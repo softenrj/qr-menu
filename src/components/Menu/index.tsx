@@ -6,8 +6,10 @@ import Footer from "../common/Footer"
 import TypeWriter from "../common/TypeWritter"
 import MenuBuilder from "./MenuBuilder"
 import Link from "next/link"
+import { useAppSelector } from "@/hook/redux"
 
 const MenuBuilderPage: React.FC = () => {
+    const userId = useAppSelector(state => state.merchant).merchant?._id;
     return (
         <div className="min-h-screen bg-[#F8F5F0]">
             <NavBar />
@@ -66,7 +68,7 @@ const MenuBuilderPage: React.FC = () => {
 
                         <div className="flex justify-center pt-4">
                             <Link
-                                href="/qr/984y93221"
+                                href={`/qr/${userId}`}
                                 className="group relative inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 px-10 py-4 text-sm md:text-base font-semibold text-white shadow-lg transition-all hover:scale-[1.03] hover:shadow-2xl"
                             >
                                 Generate QR Code
