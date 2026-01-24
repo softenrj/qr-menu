@@ -21,7 +21,7 @@ export const ReduxProvider = ({ children }: { children: React.ReactNode }): Reac
           store.dispatch(clearMerchant())
           return
         }
-        store.dispatch(setMerchant(res?.data))
+        store.dispatch(setMerchant(res?.data as any))
       } catch {
         store.dispatch(clearMerchant())
       }

@@ -15,7 +15,7 @@ export interface IMenu {
 
 const menuSchema = new mongoose.Schema<IMenu>(
   {
-    merchantId: {type: mongoose.Schema.Types.ObjectId,ref: "Merchant",required: true,index: true },
+    merchantId: {type: mongoose.Schema.Types.ObjectId,ref: "merchants",required: true,index: true },
     image: {type: String,required: true,trim: true },
     title: {type: String,required: true,trim: true,maxlength: 120 },
     price: { type: Number, required: true, min: 0 },
@@ -25,4 +25,4 @@ const menuSchema = new mongoose.Schema<IMenu>(
   }, { timestamps: true, versionKey: false }
 );
 
-export const Menu = mongoose.models.Menu || mongoose.model<IMenu>("Menu", menuSchema);
+export const Menu = mongoose.models.Menu || mongoose.model<IMenu>("menus", menuSchema);

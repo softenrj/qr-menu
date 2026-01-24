@@ -1,7 +1,7 @@
 "use client"
 
 import { useAppDispatch, useAppSelector } from "@/hook/redux"
-import { addCheckOutItem, decrementCheckOutItem, incrementCheckOutItem } from "@/store/reducer/checkout"
+import { addCheckOutItem, decrementCheckOutItem, incrementCheckOutItem, syncCartWithDB } from "@/store/reducer/checkout"
 import { IMenu } from "@/types/menu"
 import Image from "next/image"
 import React from "react"
@@ -20,6 +20,19 @@ function MenuItem({ item }: { item: IMenu }) {
           ((item.originalPrice - item.price) / item.originalPrice) * 100
         )
       : null
+
+  const handleUpdate = (newQty: number) => {
+      console.log(qty, newQty)
+
+    if (newQty > qty) {
+      dispatch(addCheckOutItem(item))
+    } else {
+      dispatch(decrementCheckOutItem(String(item._id)))
+    }
+
+    dispatch(syncCartWithDB({ itemId: String(item._id), quantity: newQty }))
+
+  }
 
   return (
     <div className="w-39 sm:w-44 md:w-48 rounded-2xl bg-white p-3 shadow-sm hover:shadow-md transition">
@@ -63,7 +76,7 @@ function MenuItem({ item }: { item: IMenu }) {
 
           {qty === 0 ? (
             <button
-              onClick={() => dispatch(addCheckOutItem(item))}
+              onClick={() => handleUpdate(1)}
               className="rounded-lg border border-green-600 px-3 py-1 text-xs font-semibold text-green-600 hover:bg-green-50"
             >
               ADD
@@ -71,14 +84,14 @@ function MenuItem({ item }: { item: IMenu }) {
           ) : (
             <div className="flex items-center gap-3 rounded-lg border border-green-600 px-2 py-1 text-green-600">
               <button
-                onClick={() => dispatch(decrementCheckOutItem(String(item._id)))}
+                onClick={() => handleUpdate(qty-1)}
                 className="text-sm font-bold"
               >
                 −
               </button>
               <span className="text-xs font-semibold">{qty}</span>
               <button
-                onClick={() => dispatch(incrementCheckOutItem(String(item._id)))}
+                onClick={() => handleUpdate(qty+1)}
                 className="text-sm font-bold"
               >
                 +

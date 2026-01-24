@@ -12,7 +12,7 @@ const qrSchema = new mongoose.Schema<IMQR>(
   {
     merchantId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Merchant",
+      ref: "merchants",
       required: true,
       index: true,
     },

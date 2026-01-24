@@ -7,6 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { useAppSelector } from "@/hook/redux"
+import { IROLE } from "@/types/role"
 
 function NavBar() {
   const [open, setOpen] = useState(false)
@@ -92,13 +93,21 @@ function NavBar() {
               {link.name}
             </Link>
           ))}
-          {user &&
+          {user && user.role === IROLE.MERCHANT &&
             <Link
               href={`/dashboard/${user._id}?uid=${user.uid}`}
               className="text-sm font-medium text-gray-600 hover:text-black transition-colors"
             >
               Dashboard
             </Link>}
+
+            {user && user.role === "CONSUMER" &&
+              <Link
+                href={`/detail/${user._id}`}
+                className="text-sm font-medium text-gray-600 hover:text-black transition-colors"
+              >
+                Transections
+              </Link>}
         </nav>
       </div>
     </header>

@@ -4,8 +4,8 @@ import React from "react"
 import { motion } from "framer-motion"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import { Badge } from "../ui/badge"
-import { CheckOutItems } from "@/store/reducer/checkout"
-import { useAppSelector } from "@/hook/redux"
+import { CheckOutItems, syncCartToCheckOut } from "@/store/reducer/checkout"
+import { useAppDispatch, useAppSelector } from "@/hook/redux"
 import { usePathname, useRouter } from "next/navigation"
 import AuthDialog from "../Auth"
 import { IROLE } from "@/types/role"
@@ -13,6 +13,7 @@ import { IROLE } from "@/types/role"
 function ItemNotch() {
   const router = useRouter()
   const pathname = usePathname()
+  const dispatch = useAppDispatch()
 
   const checkoutItems: CheckOutItems[] =
     useAppSelector((state) => state.checkOut)
@@ -44,9 +45,9 @@ function ItemNotch() {
         animate={{ y: 0, opacity: 1, scale: 1 }}
         exit={{ y: 30, opacity: 0, scale: 0.9 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2"
+        className="fixed cursor-pointer bottom-6 left-1/2 z-50 -translate-x-1/2"
         onClick={() =>
-          router.push(`${pathname}/checkout/342424242423`)
+          router.push(`${pathname}/checkout`)
         }
       >
         <div className="flex items-center gap-3 rounded-full bg-white px-3 py-2 shadow-xl ring-1 ring-black/5">

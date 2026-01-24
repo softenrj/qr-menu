@@ -16,12 +16,6 @@ const GenerateQR: React.FC<GenerateQRProps> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const [qrSize, setQrSize] = useState(maxSize)
-  const [baseUrl, setBaseUrl] = useState("")
-
-
-  useEffect(() => {
-    setBaseUrl(window.location.origin)
-  }, [])
 
   const qrUrl = value
   const logoSize = Math.round(qrSize * 0.18)

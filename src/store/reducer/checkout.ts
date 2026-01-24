@@ -1,11 +1,43 @@
+import { ICart, ICartItem } from "@/model/cart";
 import { IMenu } from "@/types/menu"
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { ApiResponse } from "@/utils/api";
+import { GET_CART, POST_ITEM_CART } from "@/utils/APIConstant";
+import { getApi, postApi } from "@/utils/common";
+import { createAsyncThunk, createSlice, Dispatch, PayloadAction } from "@reduxjs/toolkit"
 
 export interface CheckOutItems extends IMenu {
   itemCount: number
 }
 
-const initialState: CheckOutItems[] = []
+export const syncCartWithDB = createAsyncThunk(
+  "checkout/syncCart",
+  async ({ itemId, quantity }: { itemId: string, quantity: number }) => {
+    const response = await postApi<ApiResponse<ICart>>({
+      url: POST_ITEM_CART,
+      values: { itemId, quantity }
+    });
+    if (response?.success) {
+      return response?.data;
+    }
+    return null;
+  }
+);
+
+export const syncCartToCheckOut = createAsyncThunk(
+  "checkout/cart",
+  async ({ dispatch }: { dispatch: Dispatch }) => {
+    const response = await getApi<ApiResponse<CheckOutItems[]>>({
+      url: GET_CART
+    });
+    if (response?.success) {
+      dispatch(setCheckout(response?.data));
+      return response?.data;
+    }
+    return null;
+  }
+)
+
+const initialState: CheckOutItems[] = [];
 
 const checkOutSlice = createSlice({
   name: "checkout",

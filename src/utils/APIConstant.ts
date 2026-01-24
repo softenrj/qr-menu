@@ -15,3 +15,11 @@ export const CONSUMER_MENU: string = "/menu/consumer"
 export const GET_QR: string = "/menu/qr"
 export const POST_QR: string = "/menu/qr/new"
 export const REMOVE_QR: string = "/menu/qr/remove"
+
+// cart
+export const GET_CART: string = "/cart"
+export const POST_ITEM_CART: string = "/cart"
+
+// payment
+export const GET_PAYMENT_ORDER: string = "/payment"
+export const POST_PAYMENT_VERIFY: string = "/payment/verify"

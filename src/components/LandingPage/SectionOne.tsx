@@ -4,6 +4,7 @@ import { motion, Variants } from "framer-motion"
 import { ArrowRight, QrCode, Sparkles } from "lucide-react"
 import React from "react"
 import AuthDialog from "@/components/Auth";
+import { IROLE } from "@/types/role"
 
 const container: Variants = {
   hidden: { opacity: 0 },
@@ -104,7 +105,7 @@ export default function SectionOne() {
           </div>
         </motion.div>
       </section>
-      <AuthDialog open={open} onClose={onClose} />
+      <AuthDialog redirect={true} role={IROLE.MERCHANT} open={open} onClose={onClose} />
     </>
 
   )
