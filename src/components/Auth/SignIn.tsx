@@ -34,7 +34,9 @@ function Singup({ onChange, role= IROLE.MERCHANT }: { onChange: () => void, role
             dispatch(setMerchant(res.data))
             toast.success(` Welcome ${res.data.name} 🎉`)
 
-            router.replace("/service")
+            if (role === IROLE.MERCHANT) {
+                router.replace("/service")
+            }
         }
 }
 return (

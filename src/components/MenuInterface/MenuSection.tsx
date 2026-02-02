@@ -13,7 +13,7 @@ function MenuSection({section,items}:{ section: string, items: IMenu[]}) {
       </h2>
 
       <div className="flex gap-4 overflow-x-auto px-3 pb-2 snap-x snap-mandatory scrollbar-hide">
-        {items.map((item, idx) => (
+        {items?.map((item, idx) => (
           <div key={idx} className="snap-start">
             <MenuItem item={item} />
           </div>

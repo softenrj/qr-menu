@@ -22,7 +22,6 @@ function MenuItem({ item }: { item: IMenu }) {
       : null
 
   const handleUpdate = (newQty: number) => {
-      console.log(qty, newQty)
 
     if (newQty > qty) {
       dispatch(addCheckOutItem(item))

@@ -71,7 +71,7 @@ export async function POST(req: NextRequest) {
             return sendRJResponse({ success: false, message: "Unauthorized", status: 401 });
         }
 
-        if (!itemId || quantity <= 0) {
+        if (!itemId) {
             return sendRJResponse({ success: false, message: "Invalid Item or Quantity", status: 400 });
         }
 
@@ -87,7 +87,11 @@ export async function POST(req: NextRequest) {
             );
 
             if (itemIndex > -1) {
-                cart.items[itemIndex].quantity = quantity;
+                if (quantity !== 0) {
+                    cart.items[itemIndex].quantity = quantity;
+                } else {
+                    cart.remove(cart.items[itemIndex]);
+                }
             } else {
                 cart.items.push({ item: itemId, quantity });
             }
