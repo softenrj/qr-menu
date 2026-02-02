@@ -15,6 +15,10 @@ import {
     Utensils,
     TrendingUp,
 } from "lucide-react"
+import React from "react"
+import { getApi } from "@/utils/common"
+import { GET_DASHBOARD_MATRICES } from "@/utils/APIConstant"
+import { ApiResponse } from "@/utils/api"
 
 
 function GlassCard({
@@ -39,20 +43,20 @@ function GlassCard({
     )
 }
 
-function OrdersCard() {
+function OrdersCard({val = 0}:{val: number}) {
     return (
         <GlassCard gradient="bg-gradient-to-br from-indigo-600 to-indigo-500">
             <Header title="Orders" icon={<ShoppingBag />} />
-            <Metric value="1,284" trend="+12% this week" />
+            <Metric value={String(val)} trend="+12% this week" />
         </GlassCard>
     )
 }
 
-function RevenueCard() {
+function RevenueCard({val}:{val: number}) {
     return (
         <GlassCard gradient="bg-gradient-to-br from-emerald-600 to-emerald-500">
             <Header title="Revenue" icon={<IndianRupee />} />
-            <Metric value="₹82,450" trend="+18% this month" accent="yellow" />
+            <Metric value={`₹${val}`} trend="+18% this month" accent="yellow" />
         </GlassCard>
     )
 }
@@ -122,14 +126,22 @@ type Item = {
     widgets: React.ReactNode
 }
 
-const initialItems: Item[] = [
-    { id: "orders", widgets: <OrdersCard /> },
-    { id: "revenue", widgets: <RevenueCard /> },
-    { id: "visitors", widgets: <VisitorsCard /> },
-    { id: "most", widgets: <MostOrderedCard /> },
-]
+interface Matrices {
+    orders: number,
+    revenue: number
+}
 
 export default function BentoBox() {
+    const [matrices,setMatrices] = React.useState<Matrices | null>(null);
+    const initialItems: Item[] = [
+        { id: "orders", widgets: <OrdersCard val={matrices?.orders || 0} /> },
+        { id: "revenue", widgets: <RevenueCard val={matrices?.revenue || 0} /> },
+        { id: "visitors", widgets: <VisitorsCard /> },
+        { id: "most", widgets: <MostOrderedCard /> },
+    ]
+
+
+
     const [slotItemMap, setSlotItemMap] = useState<SlotItemMapArray>(
         utils.initSlotItemMap(initialItems, "id")
     )
@@ -138,6 +150,19 @@ export default function BentoBox() {
         () => utils.toSlottedItems(initialItems, "id", slotItemMap),
         [slotItemMap]
     )
+
+    const fetch = async () => {
+        const response = await getApi<ApiResponse<Matrices>>({
+            url: GET_DASHBOARD_MATRICES
+        })
+        if (response?.success) {
+            setMatrices(response.data)
+        }
+    }
+
+    React.useEffect(() => {
+        fetch();
+    },[])
 
     return (
         <div className="w-full">

@@ -23,3 +23,6 @@ export const POST_ITEM_CART: string = "/cart"
 // payment
 export const GET_PAYMENT_ORDER: string = "/payment"
 export const POST_PAYMENT_VERIFY: string = "/payment/verify"
+
+// dashboard
+export const GET_DASHBOARD_MATRICES: string = "/dashboard/matrices"
