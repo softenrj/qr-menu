@@ -90,7 +90,7 @@ export async function POST(req: NextRequest) {
                 if (quantity !== 0) {
                     cart.items[itemIndex].quantity = quantity;
                 } else {
-                    cart.remove(cart.items[itemIndex]);
+                    cart.items.remove(cart.items[itemIndex]);
                 }
             } else {
                 cart.items.push({ item: itemId, quantity });
